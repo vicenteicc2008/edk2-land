@@ -136,6 +136,8 @@
   gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9000000
   gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferHeight|1280
+  gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|720
+  gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|1280
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20
 
