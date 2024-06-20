@@ -28,9 +28,19 @@
 
 !include Pixel3XL/CommonDsc.dsc.inc
 
+[LibraryClasses]
+  RegisterFilterLib|MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
+  VariablePolicyHelperLib|MdeModulePkg/Library/VariablePolicyHelperLib/VariablePolicyHelperLib.inf
+  VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
+
+[LibraryClasses.common.DXE_RUNTIME_DRIVER]
+  VariablePolicyLib|MdeModulePkg/Library/VariablePolicyLib/VariablePolicyLibRuntimeDxe.inf
+
 [LibraryClasses.common]
+  OrderedCollectionLib|MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
   ArmPlatformLib|Pixel3XL/Library/Pixel3XLLib/Pixel3XLLib.inf
+  CompilerIntrinsicsLib|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
 
   CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibNull/DxeCapsuleLibNull.inf
   UefiBootManagerLib|MdeModulePkg/Library/UefiBootManagerLib/UefiBootManagerLib.inf
@@ -52,10 +62,10 @@
 
   # Network Libraries
   UefiScsiLib|MdePkg/Library/UefiScsiLib/UefiScsiLib.inf
-  NetLib|MdeModulePkg/Library/DxeNetLib/DxeNetLib.inf
-  DpcLib|MdeModulePkg/Library/DxeDpcLib/DxeDpcLib.inf
-  IpIoLib|MdeModulePkg/Library/DxeIpIoLib/DxeIpIoLib.inf
-  UdpIoLib|MdeModulePkg/Library/DxeUdpIoLib/DxeUdpIoLib.inf
+  NetLib|NetworkPkg/Library/DxeNetLib/DxeNetLib.inf
+  DpcLib|NetworkPkg/Library/DxeDpcLib/DxeDpcLib.inf
+  IpIoLib|NetworkPkg/Library/DxeIpIoLib/DxeIpIoLib.inf
+  UdpIoLib|NetworkPkg/Library/DxeUdpIoLib/DxeUdpIoLib.inf
 
   # VariableRuntimeDxe Requirements
   SynchronizationLib|MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib.inf
@@ -64,14 +74,16 @@
   VarCheckLib|MdeModulePkg/Library/VarCheckLib/VarCheckLib.inf
 
   # SimpleFbDxe
-  FrameBufferBltLib|MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.inf
+  FrameBufferBltLib|Pixel3XL/Library/FrameBufferBltLib/FrameBufferBltLib.inf
+  SerialPortLib|Pixel3XL/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+  PlatformBootManagerLib|Pixel3XL/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
+  MemoryInitPeiLib|Pixel3XL/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
 
 [LibraryClasses.common.SEC]
   PrePiLib|EmbeddedPkg/Library/PrePiLib/PrePiLib.inf
   ExtractGuidedSectionLib|EmbeddedPkg/Library/PrePiExtractGuidedSectionLib/PrePiExtractGuidedSectionLib.inf
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
   MemoryAllocationLib|EmbeddedPkg/Library/PrePiMemoryAllocationLib/PrePiMemoryAllocationLib.inf
-  MemoryInitPeiLib|ArmPlatformPkg/MemoryInitPei/MemoryInitPeiLib.inf
   PlatformPeiLib|ArmPlatformPkg/PlatformPei/PlatformPeiLib.inf
   PrePiHobListPointerLib|ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
 
@@ -117,6 +129,7 @@
   # GUID of the UI app
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x21, 0xaa, 0x2c, 0x46, 0x14, 0x76, 0x03, 0x45, 0x83, 0x6e, 0x8a, 0xb6, 0xf4, 0x66, 0x23, 0x31 }
 
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|5
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
 
   gEmbeddedTokenSpaceGuid.PcdMetronomeTickPeriod|1000
@@ -246,13 +259,15 @@
   #
   # Bds
   #
+  MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf {
     <LibraryClasses>
       PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
   }
-  MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
+  MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
+  MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
   MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
   MdeModulePkg/Application/UiApp/UiApp.inf {
     <LibraryClasses>
