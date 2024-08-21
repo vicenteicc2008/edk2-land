@@ -21,7 +21,7 @@
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010019
   OUTPUT_DIRECTORY               = Build/$(PLATFORM_NAME)
-  SUPPORTED_ARCHITECTURES        = AARCH64
+  SUPPORTED_ARCHITECTURES        = ARM
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = Pixel3XL/Pixel3XL.fdf
@@ -146,7 +146,7 @@
   #
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
 
-  gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferAddress|0x9000000
+  gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferAddress|0x8dd01000
   gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferHeight|1280
   gPixel3XLTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|720
@@ -210,8 +210,8 @@
   #
   EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
-  Pixel3XL/Pixel3XLDxe/Pixel3XLDxe.inf
-  Pixel3XL/SimpleFbDxe/SimpleFbDxe.inf
+  Pixel3XL/Drivers/Pixel3XLDxe/Pixel3XLDxe.inf
+  Pixel3XL/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 
   #
   # USB Host Support
